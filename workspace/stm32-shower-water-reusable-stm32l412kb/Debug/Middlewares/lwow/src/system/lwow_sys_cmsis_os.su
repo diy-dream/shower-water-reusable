@@ -1,0 +1,4 @@
+lwow_sys_cmsis_os.c:41:1:lwow_sys_mutex_create	32	static
+lwow_sys_cmsis_os.c:52:1:lwow_sys_mutex_delete	16	static
+lwow_sys_cmsis_os.c:59:1:lwow_sys_mutex_wait	16	static
+lwow_sys_cmsis_os.c:68:1:lwow_sys_mutex_release	16	static

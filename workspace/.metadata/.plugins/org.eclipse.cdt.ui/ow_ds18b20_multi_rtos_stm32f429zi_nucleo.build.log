@@ -1,0 +1,7 @@
+16:34:45 **** Incremental Build of configuration Debug for project ow_ds18b20_multi_rtos_stm32f429zi_nucleo ****
+make -j8 all 
+make: *** No rule to make target 'C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/lwow/src/lwow/lwow.c', needed by 'lwow/lwow.o'.  Stop.
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+16:34:45 Build Failed. 1 errors, 0 warnings. (took 264ms)
+

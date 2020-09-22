@@ -1,0 +1,10 @@
+16:02:44 **** Incremental Build of configuration Debug for project STM32L412KB_NUCLEO_FreeRTOS_ThreadCreation ****
+make all 
+arm-none-eabi-size   STM32L412KB_NUCLEO_FreeRTOS_ThreadCreation.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8504	     40	   4032	  12576	   3120	STM32L412KB_NUCLEO_FreeRTOS_ThreadCreation.elf
+Finished building: default.size.stdout
+ 
+
+16:02:44 Build Finished. 0 errors, 0 warnings. (took 252ms)
+

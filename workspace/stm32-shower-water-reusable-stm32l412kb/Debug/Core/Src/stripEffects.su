@@ -1,0 +1,8 @@
+stripEffects.c:215:6:stripEffect_AllColors	32	static
+stripEffects.c:233:6:stripEffect_ColorWheel	40	static
+stripEffects.c:249:6:stripEffect_CircularRing	24	static
+stripEffects.c:266:6:stripEffect_HeartBeat	40	static
+stripEffects.c:309:6:stripEffect_PatternMove	40	static
+stripEffects.c:332:6:stripEffect_FullEmpty	24	static
+stripEffects.c:351:6:stripEffect_FromTo	48	static
+stripEffects.c:368:6:stripEffect_AlternateColors	48	static

@@ -1,0 +1,4 @@
+lwow_ll_stm32_hal.c:70:1:init	24	static
+lwow_ll_stm32_hal.c:81:1:deinit	24	static
+lwow_ll_stm32_hal.c:90:1:set_baudrate	24	static
+lwow_ll_stm32_hal.c:100:1:transmit_receive	32	static

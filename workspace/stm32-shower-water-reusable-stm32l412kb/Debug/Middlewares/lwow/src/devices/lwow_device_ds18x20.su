@@ -1,0 +1,14 @@
+lwow_device_ds18x20.c:45:1:lwow_ds18x20_start_raw	24	static
+lwow_device_ds18x20.c:67:1:lwow_ds18x20_start	24	static
+lwow_device_ds18x20.c:86:1:lwow_ds18x20_read_raw	56	static
+lwow_device_ds18x20.c:154:1:lwow_ds18x20_read	32	static
+lwow_device_ds18x20.c:174:1:lwow_ds18x20_get_resolution_raw	24	static
+lwow_device_ds18x20.c:203:1:lwow_ds18x20_get_resolution	24	static
+lwow_device_ds18x20.c:225:1:lwow_ds18x20_set_resolution_raw	32	static
+lwow_device_ds18x20.c:290:1:lwow_ds18x20_set_resolution	32	static
+lwow_device_ds18x20.c:330:1:lwow_ds18x20_set_alarm_temp_raw	32	static
+lwow_device_ds18x20.c:405:1:lwow_ds18x20_set_alarm_temp	32	static
+lwow_device_ds18x20.c:425:1:lwow_ds18x20_search_alarm_raw	16	static
+lwow_device_ds18x20.c:434:1:lwow_ds18x20_search_alarm	24	static
+lwow_device_ds18x20.c:453:1:lwow_ds18x20_is_b	16	static
+lwow_device_ds18x20.c:469:1:lwow_ds18x20_is_s	16	static

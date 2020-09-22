@@ -1,0 +1,11 @@
+11:21:47 **** Incremental Build of configuration Debug for project WS2812b_test ****
+make -j8 all 
+arm-none-eabi-gcc -o "WS2812b_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Alan\Documents\views\SHOWER_WATER_REUSABLE\STM32\workspace\WS2812b_test\STM32L412KBUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="WS2812b_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Core/Src/main.o: In function `main':
+C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/STM32/workspace/WS2812b_test/Debug/../Core/Src/main.c:144: undefined reference to `led_init'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:41: WS2812b_test.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+11:21:48 Build Failed. 2 errors, 0 warnings. (took 1s.8ms)
+

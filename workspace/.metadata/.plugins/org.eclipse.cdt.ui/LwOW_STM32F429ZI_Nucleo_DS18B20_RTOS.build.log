@@ -1,0 +1,70 @@
+10:38:20 **** Incremental Build of configuration Debug for project LwOW_STM32F429ZI_Nucleo_DS18B20_RTOS ****
+make -j8 all 
+arm-none-eabi-gcc "C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/lwow/src/lwow/lwow.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-D__weak=__attribute__((weak))' '-DHSE_VALUE=8000000' '-D__packed=__attribute__((__packed__))' -DSTM32F429xx -DUSE_FULL_LL_DRIVER -c -I../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc -I../../../../../third_party/embedded-libs/FreeRTOS/include -I../../../../../third_party/embedded-libs/FreeRTOS/CMSIS_RTOS_V2 -I../../../../../snippets/include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Device/ST/STM32F4xx/Include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Include -I../../../../../third_party/embedded-libs -I../../inc -I../../../../../third_party/embedded-libs/FreeRTOS/portable/GCC/ARM_CM4F -I../../../../../lwow/src/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"lwow/lwow.d" -MT"lwow/lwow.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "lwow/lwow.o"
+arm-none-eabi-gcc "C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/lwow/src/devices/lwow_device_ds18x20.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-D__weak=__attribute__((weak))' '-DHSE_VALUE=8000000' '-D__packed=__attribute__((__packed__))' -DSTM32F429xx -DUSE_FULL_LL_DRIVER -c -I../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc -I../../../../../third_party/embedded-libs/FreeRTOS/include -I../../../../../third_party/embedded-libs/FreeRTOS/CMSIS_RTOS_V2 -I../../../../../snippets/include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Device/ST/STM32F4xx/Include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Include -I../../../../../third_party/embedded-libs -I../../inc -I../../../../../third_party/embedded-libs/FreeRTOS/portable/GCC/ARM_CM4F -I../../../../../lwow/src/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"lwow/lwow_device_ds18x20.d" -MT"lwow/lwow_device_ds18x20.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "lwow/lwow_device_ds18x20.o"
+arm-none-eabi-gcc "C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/lwow/src/system/lwow_ll_stm32f429zi_nucleo.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-D__weak=__attribute__((weak))' '-DHSE_VALUE=8000000' '-D__packed=__attribute__((__packed__))' -DSTM32F429xx -DUSE_FULL_LL_DRIVER -c -I../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc -I../../../../../third_party/embedded-libs/FreeRTOS/include -I../../../../../third_party/embedded-libs/FreeRTOS/CMSIS_RTOS_V2 -I../../../../../snippets/include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Device/ST/STM32F4xx/Include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Include -I../../../../../third_party/embedded-libs -I../../inc -I../../../../../third_party/embedded-libs/FreeRTOS/portable/GCC/ARM_CM4F -I../../../../../lwow/src/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"lwow/lwow_ll_stm32f429zi_nucleo.d" -MT"lwow/lwow_ll_stm32f429zi_nucleo.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "lwow/lwow_ll_stm32f429zi_nucleo.o"
+arm-none-eabi-gcc "C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/lwow/src/system/lwow_sys_cmsis_os.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-D__weak=__attribute__((weak))' '-DHSE_VALUE=8000000' '-D__packed=__attribute__((__packed__))' -DSTM32F429xx -DUSE_FULL_LL_DRIVER -c -I../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc -I../../../../../third_party/embedded-libs/FreeRTOS/include -I../../../../../third_party/embedded-libs/FreeRTOS/CMSIS_RTOS_V2 -I../../../../../snippets/include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Device/ST/STM32F4xx/Include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Include -I../../../../../third_party/embedded-libs -I../../inc -I../../../../../third_party/embedded-libs/FreeRTOS/portable/GCC/ARM_CM4F -I../../../../../lwow/src/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"lwow/lwow_sys_cmsis_os.d" -MT"lwow/lwow_sys_cmsis_os.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "lwow/lwow_sys_cmsis_os.o"
+arm-none-eabi-gcc "C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/snippets/scan_devices.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-D__weak=__attribute__((weak))' '-DHSE_VALUE=8000000' '-D__packed=__attribute__((__packed__))' -DSTM32F429xx -DUSE_FULL_LL_DRIVER -c -I../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc -I../../../../../third_party/embedded-libs/FreeRTOS/include -I../../../../../third_party/embedded-libs/FreeRTOS/CMSIS_RTOS_V2 -I../../../../../snippets/include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Device/ST/STM32F4xx/Include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Include -I../../../../../third_party/embedded-libs -I../../inc -I../../../../../third_party/embedded-libs/FreeRTOS/portable/GCC/ARM_CM4F -I../../../../../lwow/src/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"lwow/scan_devices.d" -MT"lwow/scan_devices.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "lwow/scan_devices.o"
+arm-none-eabi-gcc "C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/examples/stm32/ow_ds18b20_rtos_stm32f429zi_nucleo/src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-D__weak=__attribute__((weak))' '-DHSE_VALUE=8000000' '-D__packed=__attribute__((__packed__))' -DSTM32F429xx -DUSE_FULL_LL_DRIVER -c -I../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc -I../../../../../third_party/embedded-libs/FreeRTOS/include -I../../../../../third_party/embedded-libs/FreeRTOS/CMSIS_RTOS_V2 -I../../../../../snippets/include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Device/ST/STM32F4xx/Include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Include -I../../../../../third_party/embedded-libs -I../../inc -I../../../../../third_party/embedded-libs/FreeRTOS/portable/GCC/ARM_CM4F -I../../../../../lwow/src/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"User/main.d" -MT"User/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/main.o"
+arm-none-eabi-gcc "C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/examples/stm32/ow_ds18b20_rtos_stm32f429zi_nucleo/src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-D__weak=__attribute__((weak))' '-DHSE_VALUE=8000000' '-D__packed=__attribute__((__packed__))' -DSTM32F429xx -DUSE_FULL_LL_DRIVER -c -I../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc -I../../../../../third_party/embedded-libs/FreeRTOS/include -I../../../../../third_party/embedded-libs/FreeRTOS/CMSIS_RTOS_V2 -I../../../../../snippets/include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Device/ST/STM32F4xx/Include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Include -I../../../../../third_party/embedded-libs -I../../inc -I../../../../../third_party/embedded-libs/FreeRTOS/portable/GCC/ARM_CM4F -I../../../../../lwow/src/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"User/stm32f4xx_it.d" -MT"User/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/stm32f4xx_it.o"
+arm-none-eabi-gcc "C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/examples/stm32/ow_ds18b20_rtos_stm32f429zi_nucleo/src/system_stm32f4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 '-D__weak=__attribute__((weak))' '-DHSE_VALUE=8000000' '-D__packed=__attribute__((__packed__))' -DSTM32F429xx -DUSE_FULL_LL_DRIVER -c -I../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc -I../../../../../third_party/embedded-libs/FreeRTOS/include -I../../../../../third_party/embedded-libs/FreeRTOS/CMSIS_RTOS_V2 -I../../../../../snippets/include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Device/ST/STM32F4xx/Include -I../../../../../third_party/embedded-libs/st_hal/CMSIS/Include -I../../../../../third_party/embedded-libs -I../../inc -I../../../../../third_party/embedded-libs/FreeRTOS/portable/GCC/ARM_CM4F -I../../../../../lwow/src/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"User/system_stm32f4xx.d" -MT"User/system_stm32f4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/system_stm32f4xx.o"
+In file included from C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/lwow/src/system/lwow_ll_stm32f429zi_nucleo.c:45:0:
+../../../../../third_party/embedded-libs/st_hal/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:29:10: fatal error: stm32f4xx.h: No such file or directory
+ #include "stm32f4xx.h"
+          ^~~~~~~~~~~~~
+compilation terminated.
+C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/examples/stm32/ow_ds18b20_rtos_stm32f429zi_nucleo/src/stm32f4xx_it.c:34:10: fatal error: stm32f4xx.h: No such file or directory
+ #include "stm32f4xx.h"
+          ^~~~~~~~~~~~~
+compilation terminated.
+In file included from C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/examples/stm32/ow_ds18b20_rtos_stm32f429zi_nucleo/src/main.c:32:0:
+../../inc/main.h:35:10: fatal error: stm32f4xx.h: No such file or directory
+ #include "stm32f4xx.h"
+          ^~~~~~~~~~~~~
+compilation terminated.
+make: *** [lwow/subdir.mk:34: lwow/lwow_ll_stm32f429zi_nucleo.o] Error 1
+make: *** Waiting for unfinished jobs....
+C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/examples/stm32/ow_ds18b20_rtos_stm32f429zi_nucleo/src/system_stm32f4xx.c:67:10: fatal error: stm32f4xx.h: No such file or directory
+ #include "stm32f4xx.h"
+          ^~~~~~~~~~~~~
+compilation terminated.
+make: *** [User/subdir.mk:29: User/stm32f4xx_it.o] Error 1
+In file included from ../../../../../lwow/src/include/lwow/lwow_opt.h:38:0,
+                 from ../../../../../lwow/src/include/lwow/lwow.h:39,
+                 from C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/lwow/src/devices/lwow_device_ds18x20.c:34:
+../../inc/lwow_opts.h:39:10: fatal error: cmsis_os.h: No such file or directory
+ #include "cmsis_os.h"
+          ^~~~~~~~~~~~
+compilation terminated.
+make: *** [User/subdir.mk:27: User/main.o] Error 1
+In file included from ../../../../../lwow/src/include/lwow/lwow_opt.h:38:0,
+                 from ../../../../../lwow/src/include/lwow/lwow.h:39,
+                 from C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/lwow/src/system/lwow_sys_cmsis_os.c:34:
+../../inc/lwow_opts.h:39:10: fatal error: cmsis_os.h: No such file or directory
+ #include "cmsis_os.h"
+          ^~~~~~~~~~~~
+compilation terminated.
+make: *** [User/subdir.mk:33: User/system_stm32f4xx.o] Error 1
+make: *** [lwow/subdir.mk:32: lwow/lwow_device_ds18x20.o] Error 1
+make: *** [lwow/subdir.mk:36: lwow/lwow_sys_cmsis_os.o] Error 1
+In file included from ../../../../../lwow/src/include/lwow/lwow_opt.h:38:0,
+                 from ../../../../../lwow/src/include/lwow/lwow.h:39,
+                 from C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/lwow/src/lwow/lwow.c:35:
+../../inc/lwow_opts.h:39:10: fatal error: cmsis_os.h: No such file or directory
+ #include "cmsis_os.h"
+          ^~~~~~~~~~~~
+compilation terminated.
+make: *** [lwow/subdir.mk:30: lwow/lwow.o] Error 1
+In file included from ../../../../../lwow/src/include/lwow/lwow_opt.h:38:0,
+                 from ../../../../../lwow/src/include/lwow/lwow.h:39,
+                 from ../../../../../snippets/include/scan_devices.h:4,
+                 from C:/Users/Alan/Documents/views/SHOWER_WATER_REUSABLE/Reference/lwow-3.0.0/snippets/scan_devices.c:2:
+../../inc/lwow_opts.h:39:10: fatal error: cmsis_os.h: No such file or directory
+ #include "cmsis_os.h"
+          ^~~~~~~~~~~~
+compilation terminated.
+make: *** [lwow/subdir.mk:38: lwow/scan_devices.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+10:38:21 Build Failed. 17 errors, 0 warnings. (took 1s.161ms)
+

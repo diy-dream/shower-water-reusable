@@ -1,0 +1,20 @@
+19:14:19 **** Incremental Build of configuration Debug for project button-modes-detection ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L412xx -DDEBUG -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "button-modes-detection.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Alan\Documents\views\SHOWER_WATER_REUSABLE\STM32\workspace\button-modes-detection\STM32L412KBUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="button-modes-detection.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: button-modes-detection.elf
+ 
+arm-none-eabi-objdump -h -S  button-modes-detection.elf  > "button-modes-detection.list"
+arm-none-eabi-objcopy  -O binary  button-modes-detection.elf  "button-modes-detection.bin"
+arm-none-eabi-size   button-modes-detection.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26920	    124	   8196	  35240	   89a8	button-modes-detection.elf
+Finished building: default.size.stdout
+ 
+Finished building: button-modes-detection.bin
+ 
+Finished building: button-modes-detection.list
+ 
+
+19:14:21 Build Finished. 0 errors, 0 warnings. (took 1s.371ms)
+

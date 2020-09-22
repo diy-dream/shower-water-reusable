@@ -1,0 +1,10 @@
+16:34:46 **** Incremental Build of configuration Debug for project stm32-ws2812b-tim-pwm-dma ****
+make -j8 all 
+arm-none-eabi-size   stm32-ws2812b-tim-pwm-dma.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36916	   2424	  15864	  55204	   d7a4	stm32-ws2812b-tim-pwm-dma.elf
+Finished building: default.size.stdout
+ 
+
+16:34:47 Build Finished. 0 errors, 0 warnings. (took 364ms)
+
