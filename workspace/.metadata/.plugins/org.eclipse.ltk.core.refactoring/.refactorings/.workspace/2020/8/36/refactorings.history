@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;stm32-ws2812b-tim-pwm-dma/SIMPLE_PWM_TEST Debug.launch&apos;" deleteContents="false" description="Delete resource &apos;stm32-ws2812b-tim-pwm-dma/SIMPLE_PWM_TEST Debug.launch&apos;" element1="/stm32-ws2812b-tim-pwm-dma/SIMPLE_PWM_TEST Debug.launch" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1598898239281"/>
-</session>

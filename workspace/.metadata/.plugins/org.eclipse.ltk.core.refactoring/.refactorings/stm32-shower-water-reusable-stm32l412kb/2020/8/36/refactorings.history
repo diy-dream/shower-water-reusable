@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;stm32-shower-water-reusable-stm32l412kb/stm32-ws2812b-tim-pwm-dma.ioc&apos; to &apos;stm32-shower-water-reusable-stm32l412kb.ioc&apos;" description="Rename resource &apos;stm32-ws2812b-tim-pwm-dma.ioc&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="stm32-ws2812b-tim-pwm-dma.ioc" name="stm32-shower-water-reusable-stm32l412kb.ioc" stamp="1598893683008" updateReferences="true"/>
-</session>
