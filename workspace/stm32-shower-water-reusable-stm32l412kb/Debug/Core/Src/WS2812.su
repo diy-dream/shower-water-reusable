@@ -1,6 +1,0 @@
-WS2812.c:13:6:ws2812_init	16	static
-WS2812.c:23:6:ws2812_update	8	static
-WS2812.c:28:6:setLEDcolor	48	static
-WS2812.c:45:6:setWHOLEcolor	24	static
-WS2812.c:52:6:fillBufferBlack	16	static
-WS2812.c:73:6:fillBufferWhite	16	static
