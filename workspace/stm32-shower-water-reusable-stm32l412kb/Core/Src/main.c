@@ -662,8 +662,8 @@ void Main_Task(void *argument)
 
 			if(tempReady){
 				if(actual_temp < CORRECT_TEMPERATURE){
-						// Activate the relay to open the valve for the water
-						water_valve_control(false);
+					// Activate the relay to open the valve for the water
+					water_valve_control(true);
 				}else{
 					// Desactivate the relay to close the valve because the temperature of the water is good !
 					water_valve_control(false);
