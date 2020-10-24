@@ -125,6 +125,7 @@ float actual_temp = 0;
 int error_count = 0;
 ButtonState buttonState;
 bool isAborted = false;
+static bool tempReady = false;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -667,13 +668,15 @@ void Main_Task(void *argument)
 			osThreadResume(ReadTemperatureHandle);
 			//osSemaphoreRelease(readTemperatureBinarySemHandle);
 
-			// Activate the relay to open the valve for the water
-			water_valve_control(true);
-
 			// Resume the led ring task
 			osThreadResume(circularRingRedHandle);
 
-			while(actual_temp < CORRECT_TEMPERATURE && !isAborted);
+			while(actual_temp < CORRECT_TEMPERATURE && !isAborted){
+				if(tempReady){
+					// Activate the relay to open the valve for the water
+					water_valve_control(true);
+				}
+			}
 
 			if(!isAborted){
 				// Desactivate the relay to close the valve because the temperature of the water is good !
@@ -770,6 +773,7 @@ void readTemperatureTask(void *argument)
 			if (rom_found > 0) {
 				/* Infinite loop */
 				actual_temp = 0;
+				tempReady = false;
 				while (1) {
 					printf("Start temperature conversion\r\n");
 					lwow_ds18x20_start(&ow, NULL);      /* Start conversion on all devices, use protected API */
@@ -789,6 +793,9 @@ void readTemperatureTask(void *argument)
 								avg_temp += temp;
 								actual_temp = temp;
 								avg_temp_count++;
+								if(avg_temp_count == 2){
+									tempReady = true;
+								}
 							} else {
 								printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
 
