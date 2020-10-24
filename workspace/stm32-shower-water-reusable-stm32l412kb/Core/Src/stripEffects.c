@@ -6,6 +6,7 @@
  */
 
 #include "stripEffects.h"
+#include "WS2812.h"
 
 extern void setLEDcolor(uint32_t LEDnumber, uint8_t RED, uint8_t GREEN,
 		uint8_t BLUE);

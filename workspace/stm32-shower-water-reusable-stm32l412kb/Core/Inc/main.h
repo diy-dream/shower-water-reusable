@@ -50,15 +50,11 @@ extern "C" {
 
 /* USER CODE END EM */
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
-
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void Switch_Callback(void);
-void Button_Timer_Callback(void);
-uint8_t getButton();
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

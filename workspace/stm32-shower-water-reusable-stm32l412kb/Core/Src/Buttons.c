@@ -9,8 +9,13 @@
 #include "Buttons.h"
 #include "FreeRTOS.h"
 #include "task.h"
-#include "main.h"
+#include "gpio.h"
 uint32_t lastButtonTime = 0;
+
+uint8_t getButton() {
+	return HAL_GPIO_ReadPin(controlSwitch_GPIO_Port, controlSwitch_Pin) == GPIO_PIN_RESET ?
+			1 : 0;
+}
 
 ButtonState getButtonState() {
 	/*
