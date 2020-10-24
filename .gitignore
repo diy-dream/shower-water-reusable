@@ -30,8 +30,6 @@
 *.png
 
 # Eclipse CDT project files
-.cproject
-.project
 .settings/
 
 # Vagrant directory
@@ -51,3 +49,6 @@
 /workspace/.metadata
 /workspace/RemoteSystemsTempFiles
 /workspace/ASPD100/.settings
+
+/workspace/stm32-shower-water-reusable-stm32l412kb/Debug
+/workspace/stm32-shower-water-reusable-stm32l412kb/Release
