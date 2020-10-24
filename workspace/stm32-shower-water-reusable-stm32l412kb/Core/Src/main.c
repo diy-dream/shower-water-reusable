@@ -125,6 +125,7 @@ float actual_temp = 0;
 int error_count = 0;
 ButtonState buttonState;
 bool isAborted = false;
+static uint8_t tempReadyCtn = 0;
 static bool tempReady = false;
 /* USER CODE END PV */
 
@@ -773,6 +774,7 @@ void readTemperatureTask(void *argument)
 			if (rom_found > 0) {
 				/* Infinite loop */
 				actual_temp = 0;
+				tempReadyCtn = 0;
 				tempReady = false;
 				while (1) {
 					printf("Start temperature conversion\r\n");
@@ -793,8 +795,10 @@ void readTemperatureTask(void *argument)
 								avg_temp += temp;
 								actual_temp = temp;
 								avg_temp_count++;
-								if(avg_temp_count == 2){
+								if(tempReadyCtn >= 2){
 									tempReady = true;
+								}else{
+									tempReadyCtn++;
 								}
 							} else {
 								printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
