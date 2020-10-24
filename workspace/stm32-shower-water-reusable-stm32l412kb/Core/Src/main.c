@@ -124,7 +124,6 @@ size_t rom_found;
 float actual_temp = 0;
 int error_count = 0;
 ButtonState buttonState;
-bool isAborted = false;
 static uint8_t tempReadyCtn = 0;
 static bool tempReady = false;
 /* USER CODE END PV */
@@ -158,32 +157,6 @@ void safeprintf(const char* fmt, ...) {
     vprintf(fmt, va);
     osKernelUnlock();
     va_end(va);
-}
-
-/*void delayWithTimer(int time_s){
-  htim2.Init.Prescaler = (uint32_t)((SystemCoreClock / TIMER_CLOCK_FREQ) - 1);
-  htim2.Init.Period = (TIMER_CLOCK_FREQ / (1/time_s)) - 1;
-}
-
-void Button_Timer_Callback(void){
-	HAL_TIM_Base_Stop_IT(&htim2);
-	if(HAL_GPIO_ReadPin(controlSwitch_GPIO_Port, controlSwitch_Pin) == GPIO_PIN_RESET){
-		printf("Button click\r\n");
-		osSemaphoreRelease(buttonBinarySemHandle);
-	}
-
-	HAL_NVIC_EnableIRQ(EXTI3_IRQn);
-}*/
-
-void Switch_Callback(void){
-	HAL_NVIC_DisableIRQ(EXTI3_IRQn);
-
-	buttonState = getButtonState();
-	if(buttonState == BUTTON_LONG){
-		isAborted = true;
-	}
-
-	HAL_NVIC_EnableIRQ(EXTI3_IRQn);
 }
 
 uint8_t getButton() {
@@ -662,54 +635,59 @@ void Main_Task(void *argument)
 #endif
 
 #if 1
+	bool isStarted = false;
+	bool isAborted = false;
 	for(;;){
-		if (buttonState== BUTTON_SHORT)
-		{
+		ButtonState buttons = getButtonState();
+
+		switch(buttons){
+			case BUTTON_SHORT:
+				isStarted = true;
+				isAborted = false;
+				break;
+			case BUTTON_LONG:
+				isAborted = true;
+				isStarted = false;
+				break;
+			case BUTTON_DOUBLE:
+			case BUTTON_NONE:
+				break;
+		}
+		if(isStarted){
 			// Resume the readTemperature task
 			osThreadResume(ReadTemperatureHandle);
-			//osSemaphoreRelease(readTemperatureBinarySemHandle);
 
 			// Resume the led ring task
 			osThreadResume(circularRingRedHandle);
 
-			while(actual_temp < CORRECT_TEMPERATURE && !isAborted){
-				if(tempReady){
-					// Activate the relay to open the valve for the water
-					water_valve_control(true);
+			if(tempReady){
+				if(actual_temp < CORRECT_TEMPERATURE){
+						// Activate the relay to open the valve for the water
+						water_valve_control(false);
+				}else{
+					// Desactivate the relay to close the valve because the temperature of the water is good !
+					water_valve_control(false);
+
+					//Suspend temperature en led ring task
+					//osThreadSuspend(readTemperatureTask);
+					osThreadSuspend(circularRingRedHandle);
+
+					osThreadResume(circularRingGreHandle);
+
+					osDelay(4000);
+
+					osThreadSuspend(circularRingGreHandle);
+					fillBufferBlack();
+					HAL_NVIC_SystemReset();
 				}
 			}
-
-			if(!isAborted){
-				// Desactivate the relay to close the valve because the temperature of the water is good !
-				water_valve_control(false);
-
-				//Suspend temperature en led ring task
-				//osThreadSuspend(readTemperatureTask);
-				osThreadSuspend(circularRingRedHandle);
-
-				osThreadResume(circularRingGreHandle);
-
-				osDelay(4000);
-
-				osThreadSuspend(circularRingGreHandle);
-				fillBufferBlack();
-				HAL_NVIC_SystemReset();
-			}else{
-				// Desactivate the relay to close the valve because the temperature of the water is good !
-				water_valve_control(false);
-
-				/*osThreadTerminate(circularRingGreHandle);
-				osThreadTerminate(ReadTemperatureHandle);
-
-				osThreadResume(circularRingRedHandle);
-
-				osDelay(4000);
-
-				osThreadSuspend(circularRingRedHandle);
-				fillBufferBlack();
-				osThreadTerminate(MainTaskHandle);*/
-				HAL_NVIC_SystemReset();
-			}
+		}else if(isAborted){
+			// Desactivate the relay to close the valve because the temperature of the water is good !
+			water_valve_control(false);
+			osThreadSuspend(circularRingRedHandle);
+			fillBufferBlack();
+			osDelay(400);
+			HAL_NVIC_SystemReset();
 		}
 	}
 
@@ -744,83 +722,76 @@ void readTemperatureTask(void *argument)
 {
   /* USER CODE BEGIN readTemperatureTask */
   /* Infinite loop */
-	//if (readTemperatureBinarySemHandle != NULL)
-		//{
-		/* Try to obtain the semaphore */
-		//if (osSemaphoreAcquire(readTemperatureBinarySemHandle , osWaitForever) == osOK)
-		//{
-			float avg_temp;
-			size_t avg_temp_count;
+	float avg_temp;
+	size_t avg_temp_count;
 
-			/* Initialize 1-Wire library and set user argument to NULL */
-			lwow_init(&ow, &lwow_ll_drv_stm32_hal, &huart1);
+	/* Initialize 1-Wire library and set user argument to NULL */
+	lwow_init(&ow, &lwow_ll_drv_stm32_hal, &huart1);
 
-			/* Get onewire devices connected on 1-wire port */
-			do {
-				if (scan_onewire_devices(&ow, rom_ids, LWOW_ARRAYSIZE(rom_ids), &rom_found) == lwowOK) {
-					printf("Devices scanned, found %d devices!\r\n", (int)rom_found);
-				} else {
-					printf("Device scan error\r\n");
-					error_count++;
-					if(error_count >= MAX_ERROR_COUNT){
-						osThreadResume(errorTaskHandle);
-					}
-				}
-				if (rom_found == 0) {
-					osDelay(1000);
-				}
-			} while (rom_found == 0);
+	/* Get onewire devices connected on 1-wire port */
+	do {
+		if (scan_onewire_devices(&ow, rom_ids, LWOW_ARRAYSIZE(rom_ids), &rom_found) == lwowOK) {
+			printf("Devices scanned, found %d devices!\r\n", (int)rom_found);
+		} else {
+			printf("Device scan error\r\n");
+			error_count++;
+			if(error_count >= MAX_ERROR_COUNT){
+				osThreadResume(errorTaskHandle);
+			}
+		}
+		if (rom_found == 0) {
+			osDelay(1000);
+		}
+	} while (rom_found == 0);
 
-			if (rom_found > 0) {
-				/* Infinite loop */
-				actual_temp = 0;
-				tempReadyCtn = 0;
-				tempReady = false;
-				while (1) {
-					printf("Start temperature conversion\r\n");
-					lwow_ds18x20_start(&ow, NULL);      /* Start conversion on all devices, use protected API */
-					osDelay(1000);                      /* Release thread for 1 second */
+	if (rom_found > 0) {
+		/* Infinite loop */
+		actual_temp = 0;
+		tempReadyCtn = 0;
+		tempReady = false;
+		while (1) {
+			printf("Start temperature conversion\r\n");
+			lwow_ds18x20_start(&ow, NULL);      /* Start conversion on all devices, use protected API */
+			osDelay(1000);                      /* Release thread for 1 second */
 
-					/* Read temperature on all devices */
-					avg_temp = 0;
-					avg_temp_count = 0;
-					for (size_t i = 0; i < rom_found; i++) {
-						if (lwow_ds18x20_is_b(&ow, &rom_ids[i])) {
-							float temp;
-							uint8_t resolution = lwow_ds18x20_get_resolution(&ow, &rom_ids[i]);
-							if (lwow_ds18x20_read(&ow, &rom_ids[i], &temp)) {
-								printf("Sensor %02u temperature is %d.%d degrees (%u bits resolution)\r\n",
-									(unsigned)i, (int)temp, (int)((temp * 1000.0f) - (((int)temp) * 1000)), (unsigned)resolution);
+			/* Read temperature on all devices */
+			avg_temp = 0;
+			avg_temp_count = 0;
+			for (size_t i = 0; i < rom_found; i++) {
+				if (lwow_ds18x20_is_b(&ow, &rom_ids[i])) {
+					float temp;
+					uint8_t resolution = lwow_ds18x20_get_resolution(&ow, &rom_ids[i]);
+					if (lwow_ds18x20_read(&ow, &rom_ids[i], &temp)) {
+						printf("Sensor %02u temperature is %d.%d degrees (%u bits resolution)\r\n",
+							(unsigned)i, (int)temp, (int)((temp * 1000.0f) - (((int)temp) * 1000)), (unsigned)resolution);
 
-								avg_temp += temp;
-								actual_temp = temp;
-								avg_temp_count++;
-								if(tempReadyCtn >= 2){
-									tempReady = true;
-								}else{
-									tempReadyCtn++;
-								}
-							} else {
-								printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
+						avg_temp += temp;
+						actual_temp = temp;
+						avg_temp_count++;
+						if(tempReadyCtn >= 2){
+							tempReady = true;
+						}else{
+							tempReadyCtn++;
+						}
+					} else {
+						printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
 
-								if(error_count > MAX_ERROR_COUNT){
-									osThreadResume(errorTaskHandle);
-								}else{
-									error_count++;
-								}
-							}
+						if(error_count > MAX_ERROR_COUNT){
+							osThreadResume(errorTaskHandle);
+						}else{
+							error_count++;
 						}
 					}
-					if (avg_temp_count > 0) {
-						avg_temp = avg_temp / avg_temp_count;
-					}
-					printf("Average temperature: %d.%d degrees\r\n", (int)avg_temp, (int)((avg_temp * 100.0f) - ((int)avg_temp) * 100));
 				}
 			}
-			printf("Terminating application thread\r\n");
-			osThreadExit();
-			//}
-//}
+			if (avg_temp_count > 0) {
+				avg_temp = avg_temp / avg_temp_count;
+			}
+			printf("Average temperature: %d.%d degrees\r\n", (int)avg_temp, (int)((avg_temp * 100.0f) - ((int)avg_temp) * 100));
+		}
+	}
+	printf("Terminating application thread\r\n");
+	osThreadExit();
   /* USER CODE END readTemperatureTask */
 }
 
