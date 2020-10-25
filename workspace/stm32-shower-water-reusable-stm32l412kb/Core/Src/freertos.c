@@ -225,6 +225,8 @@ void Main_Task(void *argument)
 
 	bool isStarted = false;
 	bool isAborted = false;
+	uint32_t systemStartTime = 0;
+
 	for(;;){
 		ButtonState buttons = getButtonState();
 
@@ -232,6 +234,7 @@ void Main_Task(void *argument)
 			case BUTTON_SHORT:
 				isStarted = true;
 				isAborted = false;
+				systemStartTime = xTaskGetTickCount();
 				break;
 			case BUTTON_LONG:
 				isAborted = true;
@@ -252,8 +255,11 @@ void Main_Task(void *argument)
 				if(actual_temp < CORRECT_TEMPERATURE){
 					// Activate the relay to open the valve for the water
 					water_valve_control(true);
+					if((xTaskGetTickCount() - systemStartTime) > TEMPERATURE_ERROR_TIME){
+						osThreadResume(errorTaskHandle);
+					}
 				}else{
-					// Desactivate the relay to close the valve because the temperature of the water is good !
+					// Deactivate the relay to close the valve because the temperature of the water is good !
 					water_valve_control(false);
 
 					//Suspend temperature en led ring task
@@ -270,7 +276,7 @@ void Main_Task(void *argument)
 				}
 			}
 		}else if(isAborted){
-			// Desactivate the relay to close the valve because the temperature of the water is good !
+			// Deactivate the relay to close the valve because the temperature of the water is good !
 			water_valve_control(false);
 			osThreadSuspend(circularRingRedHandle);
 			fillBufferBlack();
@@ -402,7 +408,7 @@ void CircularRingGreen(void *argument)
 void ErrorTask(void *argument)
 {
   /* USER CODE BEGIN ErrorTask */
-	// Desactivate the relay to close the valve because the temperature of the water is good !
+	// Deactivate the relay to close the valve because the temperature of the water is good !
 	water_valve_control(false);
 
 	osThreadSuspend(ReadTemperatureHandle);

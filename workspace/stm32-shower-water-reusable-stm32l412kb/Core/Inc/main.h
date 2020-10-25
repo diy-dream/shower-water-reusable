@@ -95,6 +95,8 @@ void Error_Handler(void);
 #define CORRECT_TEMPERATURE									(29)
 
 #define MAX_ERROR_COUNT										(2)
+
+#define TEMPERATURE_ERROR_TIME								(60000) /* The value is expressed in milliseconds */
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
