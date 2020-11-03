@@ -253,11 +253,16 @@ void Main_Task(void *argument)
 
 			if(tempReady){
 				if(actual_temp < CORRECT_TEMPERATURE){
-					// Activate the relay to open the valve for the water
-					water_valve_control(true);
 					if((xTaskGetTickCount() - systemStartTime) > TEMPERATURE_ERROR_TIME){
+						water_valve_control(false);
+						osThreadSuspend(circularRingRedHandle);
 						osThreadResume(errorTaskHandle);
+						fillBufferBlack();
+						osDelay(4000);
+						HAL_NVIC_SystemReset();
 					}
+					// Activate the relay to open the valve for the water
+					else water_valve_control(true);
 				}else{
 					// Deactivate the relay to close the valve because the temperature of the water is good !
 					water_valve_control(false);

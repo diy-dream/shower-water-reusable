@@ -92,7 +92,7 @@ void Error_Handler(void);
 #define BUTTON_TIMER_CLOCK_FREQ								(8000000)
 #define BUTTON_TIMER_PERIOD 								(BUTTON_TIMER_CLOCK_FREQ * TEST_TIME)
 
-#define CORRECT_TEMPERATURE									(29)
+#define CORRECT_TEMPERATURE									(20)
 
 #define MAX_ERROR_COUNT										(2)
 
