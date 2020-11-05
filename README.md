@@ -21,7 +21,7 @@ When we take a shower we wait for the water to get hot, so we are wasting water 
 
 ## Hardware
 
-* STM32L4412kb
+* STM32L412kb
 * LED Ring 5V RGB WS2812B 12-Bit 37mm
 * DS18B20
 * Module relay 5V
